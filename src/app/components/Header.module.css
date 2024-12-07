@@ -32,6 +32,7 @@
 }
 
 .logo {
+  width: auto;
   height: 2rem;
 }
 
@@ -97,9 +98,4 @@
   color: black;
   display: flex;
   align-items: center;
-}
-
-.logo {
-  width: 140px;
-  height: 20px;
 }
