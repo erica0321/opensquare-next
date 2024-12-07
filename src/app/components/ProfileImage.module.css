@@ -1,0 +1,6 @@
+.userImage {
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.1rem solid gray;
+  background-color: white;
+}

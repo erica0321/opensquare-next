@@ -1,0 +1,22 @@
+.section {
+  width: 100%;
+  height: fit-content;
+  background-color: var(--hover-blue);
+}
+
+.container {
+  text-align: center;
+  padding: 5rem 2rem;
+  max-width: 109rem;
+  margin: 0 auto;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.link {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: blue;
+}

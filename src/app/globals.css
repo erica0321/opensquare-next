@@ -1,10 +1,22 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --button-enabled: #5197ff;
+  --button-hover: #e9d200;
+  --button-disabled: #d4e4f2;
+  --light-green: #b4c8bb;
+  --blue: #5197ff;
+  --real-blue: #164894;
+  --light-blue: #d4e4f2;
+  --more-light-blue: #f3f9ff;
+  --hover-blue: #dbeeff;
+  --light-gray: #f5f5f5;
+  --success: #22c55e;
+  --info: #3b82f6;
+  --warning: #f97316;
+  --error: #ef4444;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +26,17 @@
   }
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

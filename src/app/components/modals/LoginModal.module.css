@@ -1,0 +1,107 @@
+.helperText {
+  color: #ff0000;
+  font-size: 1.2rem;
+  font-weight: 400;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.helperTextContainer {
+  margin-top: 0.2rem;
+  height: 3rem;
+  width: 100%;
+}
+
+.logIn {
+  margin: 17rem auto;
+  width: 35rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.logo {
+  width: 20rem;
+  height: auto;
+}
+
+.logInContent {
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.emailLogInContainer,
+.passwordLogInContainer {
+  width: 35rem;
+}
+
+.passwordLogInContainer {
+  margin-top: 2rem;
+}
+
+.logInTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.input {
+  font-size: 1.4rem;
+  font-weight: 400;
+  width: 100%;
+  line-height: 2rem;
+  border-radius: 1rem;
+  border: 0.05rem solid black;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.logInButton {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2rem auto;
+  border: 0;
+  background-color: var(--blue);
+  width: 35rem;
+  height: 4rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: black;
+}
+
+.logInButtonDisabled {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2rem auto;
+  border: 0;
+  background-color: var(--light-blue);
+  width: 35rem;
+  height: 4rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: black;
+}
+
+.goSignUpButton {
+  margin: 0 auto;
+  font-size: 1.3rem;
+  text-decoration: none;
+  background-color: none;
+  color: black;
+}

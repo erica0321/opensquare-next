@@ -1,0 +1,39 @@
+.section {
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+}
+
+.descriptionContainer {
+  max-width: 109rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lottie {
+  width: 30rem;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.content {
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+}

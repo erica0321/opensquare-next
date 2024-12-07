@@ -1,0 +1,39 @@
+.section {
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  margin: 0 auto;
+  padding-bottom: 6rem;
+}
+
+.container {
+  max-width: 109rem;
+  width: calc(100% - 4rem);
+  height: 100%;
+  margin: 0 auto;
+  padding: 8rem 2rem;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--more-light-blue);
+  justify-content: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.lottie {
+  width: 25rem;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+.content {
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
