@@ -41,6 +41,8 @@ a {
 }
 
 body {
+  height: 100vh;
+  margin: 0 auto;
   background: var(--light-gray);
   -ms-overflow-style: none;
   scrollbar-width: none;

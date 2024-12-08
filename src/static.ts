@@ -22,7 +22,7 @@ export const navUrl = {
   signUp: '/signUp',
   posts: '/posts',
   postDetail: '/posts/:id',
-  addPost: '/posts/write',
+  addPost: '/posts/new',
   updatePost: '/posts/:id/update',
   updateProfile: '/user/update',
   updatePassword: '/user/password',
