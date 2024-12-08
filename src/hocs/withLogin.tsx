@@ -1,16 +1,13 @@
 import { navUrl } from '@/static'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { Response } from '@/types/responseType'
 
 interface WithLoginProps {
   logIn?: boolean
   error?: string
-  responseData: {
-    data: {
-      profileImage: string
-      nickname: string
-    }
-  } | null
+  loading?: boolean
+  responseData: Response | null
 }
 
 export default function withLogin<P extends object>(

@@ -23,7 +23,6 @@ export default function MiniPost({ data }: MiniPostProps) {
   const postTitle = data.title.slice(0, 26)
   const postView = viewToK(data.view)
   const postCommentCount = commentToK(data.commentCount ?? 0)
-
   return (
     <Link
       href={`${navUrl.posts}/${data.post_id}`}

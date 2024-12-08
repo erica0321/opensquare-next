@@ -1,0 +1,18 @@
+.boardAction {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.count {
+  display: flex;
+  font-size: 1.2rem;
+  gap: 1rem;
+}
+
+.readNumber,
+.commentNumber {
+  display: flex;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+}

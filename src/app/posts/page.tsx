@@ -14,16 +14,16 @@ interface User {
     profileImage: string
     nickname: string
   }
+  logIn: boolean
 }
 
-const AuthLayout = withLogin(Layout)
+// const AuthLayout = withLogin(Layout)
 
 export default function Page() {
   const { responseData, logIn } = useFetch<User>(`${fetchUrl.user}`, {
     headers: getHeadersWithToken(),
     credentials: 'include',
   })
-  console.log(logIn)
   const searchParams = useSearchParams()
   const type = searchParams.get('type')
   const q = searchParams.get('q')
@@ -39,7 +39,7 @@ export default function Page() {
   return (
     <section className={styles.container}>
       <div className={styles.main}>
-        <Layout logIn={logIn} responseData={responseData}>
+        <Layout responseData={responseData}>
           <section className={styles.postsMain}>
             <AllPosts type={postType} search={search} />
           </section>

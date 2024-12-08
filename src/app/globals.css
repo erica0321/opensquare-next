@@ -30,6 +30,16 @@ html {
   font-size: 62.5%;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
 body {
   background: var(--light-gray);
   -ms-overflow-style: none;

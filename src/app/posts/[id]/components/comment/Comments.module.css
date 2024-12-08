@@ -1,0 +1,35 @@
+.commentContainer {
+  margin-top: 1rem;
+  padding-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 1rem;
+  max-width: 70rem;
+}
+
+.divHr {
+  padding: 0 2rem;
+  box-sizing: border-box;
+  border-width: 1px 0 0 0;
+  border-style: dashed;
+  border-color: #bbb;
+}
+
+.commentList {
+  margin: 2rem 0;
+  width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.commentTitle {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+}

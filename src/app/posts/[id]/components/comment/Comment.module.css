@@ -1,0 +1,90 @@
+.comment {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  padding: 2rem 2rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  gap: 1rem;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commentWriter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.commentBody {
+  margin-left: 5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  height: fit-content;
+}
+
+#updateCommentBody {
+  font-size: 1.3rem;
+  font-weight: 500;
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+  resize: none;
+  border-radius: 1rem;
+}
+
+.updateCommentButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.commentUpdateConfirm {
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  border: 0.1rem solid black;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+}
+
+.commentUpdateCancel {
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  border: 0.1rem solid black;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+}
+
+.commentButton {
+  display: flex;
+  gap: 1rem;
+}
+
+.commentUpdate,
+.commentDelete {
+  cursor: pointer;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.3rem 1rem;
+  font-size: 1.3rem;
+  color: black;
+  border: 0;
+}
