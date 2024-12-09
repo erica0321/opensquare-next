@@ -1,4 +1,5 @@
 import styles from './ProfileImage.module.css'
+import Image from 'next/image'
 
 interface ProfileImageProps {
   image: string
@@ -7,10 +8,11 @@ interface ProfileImageProps {
 
 export default function ProfileImage({ image, size = 32 }: ProfileImageProps) {
   return (
-    <img
+    <Image
       alt='profile'
       src={image}
-      style={{ width: `${size}px`, height: `${size}px` }}
+      width={size}
+      height={size}
       className={styles.userImage}
     />
   )

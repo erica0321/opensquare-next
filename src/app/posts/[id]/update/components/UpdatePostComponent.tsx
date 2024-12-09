@@ -7,6 +7,7 @@ import { navUrl, fetchUrl } from '@/static'
 import styles from './UpdatePostComponent.module.css'
 import { apiRequest } from '@/utils/fetchData'
 import { toast } from 'react-toastify'
+import Image from 'next/image'
 
 interface ResponseData {
   title: string
@@ -153,7 +154,13 @@ export default function UpdatePostComponent({
           </div>
           <div className={styles.imageContainer}>
             {postImage ? (
-              <img className={styles.imageShow} alt='post' src={postImage} />
+              <Image
+                width={600}
+                height={490}
+                className={styles.imageShow}
+                alt='post'
+                src={postImage}
+              />
             ) : (
               <div className={styles.imageNone}>이미지 없음</div>
             )}

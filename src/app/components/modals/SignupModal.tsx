@@ -140,7 +140,13 @@ export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
     >
       <section className={styles.signUpMain}>
         <div className={styles.title}>
-          <img src={logo.src} alt='logo' className={styles.logo} />
+          <Image
+            width={200}
+            height={100}
+            src={logo.src}
+            alt='logo'
+            className={styles.logo}
+          />
         </div>
 
         <form className={styles.signUpContainer}>

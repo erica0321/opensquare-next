@@ -4,6 +4,7 @@ import Link from 'next/link'
 import ProfileImage from '@/app/components/ProfileImage'
 import { navUrl } from '@/static'
 import { changeDate } from '@/utils/convertDate'
+import Image from 'next/image'
 
 interface MiniPostProps {
   data: {
@@ -51,13 +52,13 @@ export default function MiniPost({ data }: MiniPostProps) {
           </div>
         </div>
         {data.post_image && (
-          <div className={styles.boardImageContainer}>
-            <img
-              alt='board'
-              className={styles.boardImage}
-              src={data.post_image}
-            />
-          </div>
+          <Image
+            className={styles.boardImageContainer}
+            width={100}
+            height={100}
+            alt='board'
+            src={data.post_image}
+          />
         )}
       </div>
     </Link>

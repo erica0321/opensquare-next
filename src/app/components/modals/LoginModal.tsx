@@ -51,12 +51,8 @@ export default function LogInPage({ isOpen, setLogIn }: LoginProps) {
         const accessToken = responseData.headers.get('access')
         if (accessToken) {
           localStorage.setItem('access', accessToken)
-          toast.success('로그인 성공')
           setLogInSuccess(true)
-          setTimeout(() => {
-            router.push(navUrl.posts)
-          }, 1000)
-          setLoading(false)
+          router.push(navUrl.posts)
         } else {
           toast.error('로그인 실패')
           setLoading(false)

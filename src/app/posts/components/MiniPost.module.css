@@ -89,8 +89,10 @@
 }
 
 .boardImageContainer {
+  border: 1px solid var(--light-blue);
   width: 10rem;
   height: 10rem;
+  object-fit: contain;
   border-radius: 1rem;
 }
 

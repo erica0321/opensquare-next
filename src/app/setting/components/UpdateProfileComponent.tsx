@@ -3,6 +3,7 @@
 import DeleteUserModal from './DeleteUserModal'
 import styles from './UpdateProfileComponent.module.css'
 import { useState, useEffect, useReducer } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import {
   nicknameMessageReduer,
@@ -133,7 +134,13 @@ export default function UpdateProfileCompoent({
           <p className={styles.inputTitle}>프로필 사진*</p>
           <div className={styles.imageContainer}>
             {profile ? (
-              <img className={styles.imageShow} alt='profile' src={profile} />
+              <Image
+                width={150}
+                height={150}
+                className={styles.imageShow}
+                alt='profile'
+                src={profile}
+              />
             ) : (
               <div className={styles.imageNone}></div>
             )}
