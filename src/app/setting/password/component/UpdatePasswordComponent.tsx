@@ -13,7 +13,7 @@ import {
   passwordCheckInitialMessage,
   passwordCheckMessageReducer,
 } from '@/reducer/passwordCheckReducer'
-import PasswordInput from './PasswordInput'
+import PasswordInput from '@components/inputs/PasswordInput'
 import { apiRequest } from '@/utils/fetchData'
 import { toast } from 'react-toastify'
 

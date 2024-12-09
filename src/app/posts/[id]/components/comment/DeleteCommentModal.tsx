@@ -1,5 +1,4 @@
 import { fetchUrl } from '@/static'
-import { enableScroll } from '@/utils/scroll'
 import { apiRequest } from '@/utils/fetchData'
 import { toast } from 'react-toastify'
 import { Modal, Button } from 'antd'
@@ -35,7 +34,6 @@ export default function DeleteCommentModal({
       }
 
       setIsCommentDelete(false)
-      enableScroll()
     } catch (error) {
       console.error('댓글 삭제 중 에러 발생:', error)
       toast.error('댓글 삭제 중 에러가 발생했습니다.')
@@ -43,7 +41,6 @@ export default function DeleteCommentModal({
   }
 
   const handleClickDeleteCancel = () => {
-    enableScroll()
     setIsCommentDelete(false)
   }
 

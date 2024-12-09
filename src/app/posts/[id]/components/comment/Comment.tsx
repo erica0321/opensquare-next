@@ -1,5 +1,4 @@
 import DeleteCommentModal from './DeleteCommentModal'
-import { disableScroll } from '@/utils/scroll'
 import { checkCommentOwner } from '@/utils/checkOwner'
 import { useState } from 'react'
 import styles from './Comment.module.css'
@@ -44,7 +43,6 @@ export default function Comment({
         setUpdateTarget({ commentId: data.comment_id, comment: data.comment })
         setIsAdd(false)
       } else if (action === 'delete') {
-        disableScroll()
         setIsCommentDelete(true)
       }
     } catch (error) {

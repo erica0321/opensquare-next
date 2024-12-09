@@ -42,10 +42,15 @@ a {
 
 body {
   overflow: auto;
+  -ms-overflow-style: none;
   height: 100vh;
   margin: 0 auto;
   background: var(--light-gray);
   scrollbar-width: 0.2rem;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

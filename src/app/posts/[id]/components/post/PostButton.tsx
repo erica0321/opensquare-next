@@ -1,6 +1,5 @@
 import { checkPostOwner } from '@/utils/checkOwner'
 import { navUrl } from '@/static'
-import { disableScroll } from '@/utils/scroll'
 import { toast } from 'react-toastify'
 import styles from './PostButton.module.css'
 import { useRouter } from 'next/navigation'
@@ -31,7 +30,6 @@ export default function PostButton({
       toast.error('본인이 작성한 게시물이 아닙니다.')
       return
     }
-    disableScroll()
     setIsPostDelete(true)
   }
 

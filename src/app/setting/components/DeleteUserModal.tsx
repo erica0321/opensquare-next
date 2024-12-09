@@ -1,5 +1,4 @@
 import { useRouter } from 'next/navigation'
-import { enableScroll } from '@/utils/scroll'
 import { navUrl, fetchUrl } from '@/static'
 import { apiRequest } from '@/utils/fetchData'
 import { toast } from 'react-toastify'
@@ -15,14 +14,8 @@ export default function DeleteUserModal({
   setIsDelete,
 }: DeleteUserModalProps) {
   const router = useRouter()
-
   const title = '회원탈퇴 하시겞습니까?'
   const description = '작성된 게시글과 댓글은 삭제됩니다.'
-
-  const handleClickDeleteUserCancel = () => {
-    setIsDelete(false)
-    enableScroll()
-  }
 
   const handleClickDeleteUserConfirm = async () => {
     try {
@@ -50,10 +43,10 @@ export default function DeleteUserModal({
       title={title}
       open={isDelete}
       onOk={handleClickDeleteUserConfirm}
-      onCancel={handleClickDeleteUserCancel}
+      onCancel={() => setIsDelete(false)}
       centered
       footer={[
-        <Button key='back' onClick={handleClickDeleteUserCancel}>
+        <Button key='back' onClick={() => setIsDelete(false)}>
           취소
         </Button>,
         <Button

@@ -2,9 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './LoginModal.module.css'
 import { emailNotValidErrorLine } from '@/utils/errorMessage'
-import { navUrl, fetchUrl } from '@/static'
-import { headersNoToken } from '@/static'
-import { enableScroll } from '@/utils/scroll'
+import { navUrl, fetchUrl, headersNoToken } from '@/static'
 import logo from '@images/logo.png'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
@@ -55,7 +53,6 @@ export default function LogInPage({ isOpen, setLogIn }: LoginProps) {
           localStorage.setItem('access', accessToken)
           toast.success('로그인 성공')
           setLogInSuccess(true)
-          enableScroll()
           setTimeout(() => {
             router.push(navUrl.posts)
           }, 1000)

@@ -57,7 +57,6 @@ export default function PasswordInput({
     checkPasswordValidation(password, value)
   }
 
-  // 비밀번호 유효성 검사
   const checkPasswordValidation = (
     password: string,
     passwordCheck: string

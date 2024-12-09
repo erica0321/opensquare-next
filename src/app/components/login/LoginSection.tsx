@@ -2,32 +2,12 @@
 
 import styles from './LogInSection.module.css'
 import { useState } from 'react'
-import { usePosition } from '@/hooks/usePosition'
-import { disableScroll, enableScroll } from '@/utils/scroll'
 import LogInPage from '@/app/components/modals/LoginModal'
 import SignUpPage from '@/app/components/modals/SignupModal'
 
 export default function LoginSection() {
   const [logIn, setLogIn] = useState(false)
   const [signUp, setSignUp] = useState(false)
-
-  const position = usePosition(logIn || signUp)
-
-  const handleLogInClick = () => {
-    disableScroll()
-    setLogIn(true)
-  }
-
-  const handleSignUpClick = () => {
-    disableScroll()
-    setSignUp(true)
-  }
-
-  const closeModal = () => {
-    setLogIn(false)
-    setSignUp(false)
-    enableScroll()
-  }
 
   return (
     <>
@@ -40,13 +20,13 @@ export default function LoginSection() {
             </p>
             <div className={styles.buttonContainer}>
               <div
-                onClick={handleLogInClick}
+                onClick={() => setLogIn(true)}
                 className={`${styles.logIn} ${styles.button}`}
               >
                 로그인
               </div>
               <div
-                onClick={handleSignUpClick}
+                onClick={() => setSignUp(true)}
                 className={`${styles.signUp} ${styles.button}`}
               >
                 회원가입
@@ -55,17 +35,8 @@ export default function LoginSection() {
           </div>
         </div>
       </div>
-      {(logIn || signUp) && (
-        <div className={styles.modalContainer} style={{ top: `${position}px` }}>
-          <div onClick={closeModal} className={styles.deem}></div>
-          <LogInPage isOpen={logIn} setLogIn={setLogIn} />
-          <SignUpPage
-            isOpen={signUp}
-            setLogIn={setLogIn}
-            setSignUp={setSignUp}
-          />
-        </div>
-      )}
+      <LogInPage isOpen={logIn} setLogIn={setLogIn} />
+      <SignUpPage isOpen={signUp} setLogIn={setLogIn} setSignUp={setSignUp} />
     </>
   )
 }

@@ -48,6 +48,6 @@
   justify-content: center;
   width: 100%;
   max-width: 192rem;
-  height: calc(100vh - 18rem);
+  height: calc(100vh - 16.5rem);
   gap: 3rem;
 }

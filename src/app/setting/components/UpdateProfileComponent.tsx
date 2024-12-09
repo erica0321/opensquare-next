@@ -1,6 +1,5 @@
 'use client'
 
-import { disableScroll } from '@/utils/scroll'
 import DeleteUserModal from './DeleteUserModal'
 import styles from './UpdateProfileComponent.module.css'
 import { useState, useEffect, useReducer } from 'react'
@@ -127,11 +126,6 @@ export default function UpdateProfileCompoent({
     }
   }
 
-  const handleClickUserDelete = () => {
-    disableScroll()
-    setIsDelete(true)
-  }
-
   return (
     <>
       <form className={styles.wrapper}>
@@ -199,7 +193,7 @@ export default function UpdateProfileCompoent({
       </div>
       <div className={styles.profilebutton}>
         <button
-          onClick={handleClickUserDelete}
+          onClick={() => setIsDelete(true)}
           className={styles.profileDeleteButton}
         >
           회원 탈퇴
