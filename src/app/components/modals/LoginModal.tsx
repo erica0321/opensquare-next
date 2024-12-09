@@ -8,9 +8,14 @@ import { enableScroll } from '@/utils/scroll'
 import logo from '@images/logo.png'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
-import { Input } from 'antd'
+import { Input, Modal } from 'antd'
 
-export default function LogInPage() {
+interface LoginProps {
+  isOpen: boolean
+  setLogIn: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function LogInPage({ isOpen, setLogIn }: LoginProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailNotValid, setEmailNotValid] = useState(false)
@@ -85,55 +90,64 @@ export default function LogInPage() {
   }
 
   return (
-    <section className={styles.logIn}>
-      <div className={styles.title}>
-        <Image src={logo} alt='logo' className={styles.logo} />
-      </div>
-      <form className={styles.logInContent}>
-        <div className={styles.emailLogInContainer}>
-          <label htmlFor='email' className={styles.logInTitle}>
-            이메일
-          </label>
-          <Input
-            allowClear
-            size='large'
-            count={{
-              show: true,
-            }}
-            status={!email || email.length < 8 ? 'error' : ''}
-            type='email'
-            placeholder='이메일을 입력하세요. (최소 8글자)'
-            onChange={handleChangeEmail}
-          />
+    <Modal
+      centered
+      open={isOpen}
+      footer={null}
+      onCancel={() => {
+        setLogIn(false)
+      }}
+    >
+      <section className={styles.logIn}>
+        <div className={styles.title}>
+          <Image src={logo} alt='logo' className={styles.logo} />
         </div>
-        <div className={styles.passwordLogInContainer}>
-          <label htmlFor='password' className={styles.logInTitle}>
-            비밀번호
-          </label>
-          <Input.Password
-            allowClear
-            status={!password ? 'error' : ''}
-            size='large'
-            onChange={handleChangePassword}
-            placeholder='비밀번호를 입력하세요'
-          />
-          <div className={styles.helperTextContainer}>
-            <div className={styles.helperText}>
-              {emailNotValid && emailNotValidErrorLine}
+        <form className={styles.logInContent}>
+          <div className={styles.emailLogInContainer}>
+            <label htmlFor='email' className={styles.logInTitle}>
+              이메일
+            </label>
+            <Input
+              allowClear
+              size='large'
+              count={{
+                show: true,
+              }}
+              status={!email || email.length < 8 ? 'error' : ''}
+              type='email'
+              placeholder='이메일을 입력하세요. (최소 8글자)'
+              onChange={handleChangeEmail}
+            />
+          </div>
+          <div className={styles.passwordLogInContainer}>
+            <label htmlFor='password' className={styles.logInTitle}>
+              비밀번호
+            </label>
+            <Input.Password
+              allowClear
+              status={!password ? 'error' : ''}
+              size='large'
+              onChange={handleChangePassword}
+              placeholder='비밀번호를 입력하세요'
+            />
+            <div className={styles.helperTextContainer}>
+              <div className={styles.helperText}>
+                {emailNotValid && emailNotValidErrorLine}
+              </div>
             </div>
           </div>
-        </div>
-        <button
-          type='button'
-          onClick={handleClickLogIn}
-          className={
-            logInSuccess ? styles.logInButton : styles.logInButtonDisabled
-          }
-          disabled={!email || !password || loading}
-        >
-          로그인
-        </button>
-      </form>
-    </section>
+          <button
+            type='button'
+            onClick={handleClickLogIn}
+            className={
+              logInSuccess ? styles.logInButton : styles.logInButtonDisabled
+            }
+            disabled={!email || !password || loading}
+          >
+            로그인
+          </button>
+        </form>
+      </section>
+    </Modal>
   )
 }

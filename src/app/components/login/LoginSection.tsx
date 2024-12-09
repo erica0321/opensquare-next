@@ -58,20 +58,12 @@ export default function LoginSection() {
       {(logIn || signUp) && (
         <div className={styles.modalContainer} style={{ top: `${position}px` }}>
           <div onClick={closeModal} className={styles.deem}></div>
-          {logIn && (
-            <div className={styles.modal}>
-              <div className={styles.logInModal}>
-                <LogInPage />
-              </div>
-            </div>
-          )}
-          {signUp && (
-            <div className={styles.modal}>
-              <div className={styles.signUpModal}>
-                <SignUpPage setLogIn={setLogIn} setSignUp={setSignUp} />
-              </div>
-            </div>
-          )}
+          <LogInPage isOpen={logIn} setLogIn={setLogIn} />
+          <SignUpPage
+            isOpen={signUp}
+            setLogIn={setLogIn}
+            setSignUp={setSignUp}
+          />
         </div>
       )}
     </>

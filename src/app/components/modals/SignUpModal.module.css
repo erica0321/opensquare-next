@@ -1,7 +1,9 @@
 .signUpMain {
-  margin-top: 2rem;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 40rem;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

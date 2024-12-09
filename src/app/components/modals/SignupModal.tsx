@@ -26,13 +26,15 @@ import { apiRequestNoAuth } from '@/utils/fetchData'
 import logo from '@images/logo.png'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { Modal } from 'antd'
 
 interface SignUpProps {
+  isOpen: boolean
   setLogIn: React.Dispatch<React.SetStateAction<boolean>>
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function SignUp({ setLogIn, setSignUp }: SignUpProps) {
+export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
   const [emailState, emailDispatcher] = useReducer(
     emailMessageReducer,
     emailInitialMessage
@@ -128,78 +130,90 @@ export default function SignUp({ setLogIn, setSignUp }: SignUpProps) {
   }
 
   return (
-    <section className={styles.signUpMain}>
-      <div className={styles.title}>
-        <img src={logo.src} alt='logo' className={styles.logo} />
-      </div>
+    <Modal
+      centered
+      open={isOpen}
+      footer={null}
+      onCancel={() => {
+        setSignUp(false)
+      }}
+    >
+      <section className={styles.signUpMain}>
+        <div className={styles.title}>
+          <img src={logo.src} alt='logo' className={styles.logo} />
+        </div>
 
-      <form className={styles.signUpContainer}>
-        <div className={styles.topContainer}>
-          <p className={styles.inputTitle}>프로필 사진</p>
-          <div className={styles.helperTextContainer}>
-            <div className={styles.helperText}>
-              {imageNull && SignUpError.imageNullError}
+        <form className={styles.signUpContainer}>
+          <div className={styles.topContainer}>
+            <p className={styles.inputTitle}>프로필 사진</p>
+            <div className={styles.helperTextContainer}>
+              <div className={styles.helperText}>
+                {imageNull && SignUpError.imageNullError}
+              </div>
+            </div>
+            <div className={styles.imageContainer}>
+              {profileImage ? (
+                <Image
+                  className={styles.imageShow}
+                  alt='profile'
+                  src={profileImage}
+                />
+              ) : null}
+              <div className={styles.imageUpdate}>
+                <label
+                  htmlFor='imageInput'
+                  className={styles.imageUpdateButton}
+                >
+                  +
+                </label>
+                <input
+                  className={styles.imageInput}
+                  id='imageInput'
+                  onChange={handleChangeProfileImage}
+                  type='file'
+                  accept='image/*'
+                />
+              </div>
             </div>
           </div>
-          <div className={styles.imageContainer}>
-            {profileImage ? (
-              <Image
-                className={styles.imageShow}
-                alt='profile'
-                src={profileImage}
-              />
-            ) : null}
-            <div className={styles.imageUpdate}>
-              <label htmlFor='imageInput' className={styles.imageUpdateButton}>
-                +
-              </label>
-              <input
-                className={styles.imageInput}
-                id='imageInput'
-                onChange={handleChangeProfileImage}
-                type='file'
-                accept='image/*'
-              />
-            </div>
+          <div className={styles.bottomContainer}>
+            <EmailInput
+              email={email}
+              setEmail={setEmail}
+              emailState={emailState}
+              emailDispatcher={emailDispatcher}
+            />
+            <PasswordInput
+              password={password}
+              setPassword={setPassword}
+              passwordCheck={passwordCheck}
+              setPasswordCheck={setPasswordCheck}
+              passwordState={passwordState}
+              passwordDispatcher={passwordDispatcher}
+              passwordCheckState={passwordCheckState}
+              passwordCheckDispatcher={passwordCheckDispatcher}
+            />
+            <NicknameInput
+              nickname={nickname}
+              setNickname={setNickname}
+              nicknameState={nicknameState}
+              nicknameDispatcher={nicknameDispatcher}
+            />
           </div>
-        </div>
-        <div className={styles.bottomContainer}>
-          <EmailInput
-            email={email}
-            setEmail={setEmail}
-            emailState={emailState}
-            emailDispatcher={emailDispatcher}
-          />
-          <PasswordInput
-            password={password}
-            setPassword={setPassword}
-            passwordCheck={passwordCheck}
-            setPasswordCheck={setPasswordCheck}
-            passwordState={passwordState}
-            passwordDispatcher={passwordDispatcher}
-            passwordCheckState={passwordCheckState}
-            passwordCheckDispatcher={passwordCheckDispatcher}
-          />
-          <NicknameInput
-            nickname={nickname}
-            setNickname={setNickname}
-            nicknameState={nicknameState}
-            nicknameDispatcher={nicknameDispatcher}
-          />
-        </div>
-        <button
-          type='button'
-          onClick={handleClickSignUp}
-          className={
-            isValid && !loading
-              ? styles.signUpButton
-              : styles.signUpButtonDisabled
-          }
-          disabled={!isValid || loading}
-        >
-          회원가입
-        </button>
-      </form>
-    </section>
+          <button
+            type='button'
+            onClick={handleClickSignUp}
+            className={
+              isValid && !loading
+                ? styles.signUpButton
+                : styles.signUpButtonDisabled
+            }
+            disabled={!isValid || loading}
+          >
+            회원가입
+          </button>
+        </form>
+      </section>
+    </Modal>
   )
 }
