@@ -3,6 +3,8 @@ import { NICKNAME_STATUS } from '@/utils/status'
 import { apiRequestNoAuth } from '@/utils/fetchData'
 import { fetchUrl } from '@/static'
 import { Input } from 'antd'
+import debounce from 'lodash/debounce'
+import { useCallback } from 'react'
 
 type NicknameStatus = (typeof NICKNAME_STATUS)[keyof typeof NICKNAME_STATUS]
 
@@ -32,7 +34,7 @@ export default function NicknameInput({
   ) => {
     const value = event.target.value
     setNickname(value)
-    await checkNicknameValidation(value)
+    debouncedCheckEmailValidation(value)
   }
 
   const checkNicknameValidation = async (
@@ -63,6 +65,11 @@ export default function NicknameInput({
 
     return true
   }
+
+  const debouncedCheckEmailValidation = useCallback(
+    debounce(checkNicknameValidation, 200),
+    []
+  )
 
   return (
     <div className={styles.nicknameContainer}>

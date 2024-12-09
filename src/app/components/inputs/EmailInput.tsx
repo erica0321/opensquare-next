@@ -3,6 +3,8 @@ import { fetchUrl } from '@/static'
 import { apiRequestNoAuth } from '@/utils/fetchData'
 import { EMAIL_STATUS } from '@/utils/status'
 import { Input } from 'antd'
+import debounce from 'lodash/debounce'
+import { useCallback } from 'react'
 
 type EmailStatus = (typeof EMAIL_STATUS)[keyof typeof EMAIL_STATUS]
 
@@ -10,7 +12,6 @@ interface EmailState {
   emailMessage: string
 }
 
-// 이메일 상태를 변경하기 위한 액션 타입
 interface EmailAction {
   type: EmailStatus
 }
@@ -33,7 +34,7 @@ export default function EmailInput({
   ) => {
     const value = event.target.value
     setEmail(value)
-    await checkEmailValidation(value)
+    debouncedCheckEmailValidation(value)
   }
 
   const checkEmailValidation = async (email: string): Promise<boolean> => {
@@ -50,7 +51,6 @@ export default function EmailInput({
     }
     emailDispatcher({ type: EMAIL_STATUS.Reset })
 
-    // apiRequestNoAuth의 반환값 타입을 가정합니다. 실제 API 응답 구조에 따라 조정 필요.
     const isEmailDuplicate = await apiRequestNoAuth<{ status: number }>({
       url: `${fetchUrl.email}/${email}`,
       method: 'POST',
@@ -64,6 +64,11 @@ export default function EmailInput({
 
     return true
   }
+
+  const debouncedCheckEmailValidation = useCallback(
+    debounce(checkEmailValidation, 200),
+    []
+  )
 
   return (
     <div className={styles.emailContainer}>
