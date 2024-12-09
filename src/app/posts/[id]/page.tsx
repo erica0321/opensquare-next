@@ -5,7 +5,6 @@ import { getHeadersWithToken, fetchUrl } from '@/static'
 import { useState } from 'react'
 import styles from './page.module.css'
 import PostDetail from './components/post/PostDetail'
-import withLogin from '@/hocs/withLogin'
 import Comments from './components/comment/Comments'
 import DeletePostModal from './components/post/DeletePostModal'
 
@@ -48,8 +47,8 @@ export default function Page({ params }: PageProps) {
           />
           <Comments postId={postId} />
           <DeletePostModal
-            postId={postId}
             isPostDelete={isPostDelete}
+            postId={postId}
             setIsPostDelete={setIsPostDelete}
           />
         </div>

@@ -40,6 +40,9 @@
 
 .emailLogInContainer,
 .passwordLogInContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 35rem;
 }
 
@@ -50,18 +53,6 @@
 .logInTitle {
   font-size: 1.4rem;
   font-weight: 700;
-}
-
-.input {
-  font-size: 1.4rem;
-  font-weight: 400;
-  width: 100%;
-  line-height: 2rem;
-  border-radius: 1rem;
-  border: 0.05rem solid black;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin-top: 1rem;
 }
 
 .logInButton {

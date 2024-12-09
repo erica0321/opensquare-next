@@ -2,6 +2,7 @@ import styles from './NicknameInput.module.css'
 import { NICKNAME_STATUS } from '@/utils/status'
 import { apiRequestNoAuth } from '@/utils/fetchData'
 import { fetchUrl } from '@/static'
+import { Input } from 'antd'
 
 type NicknameStatus = (typeof NICKNAME_STATUS)[keyof typeof NICKNAME_STATUS]
 
@@ -68,15 +69,19 @@ export default function NicknameInput({
       <label htmlFor='nicknameInput' className={styles.inputTitle}>
         닉네임*
       </label>
-      <input
+      <Input
+        allowClear
+        size='large'
+        count={{
+          show: true,
+        }}
         value={nickname}
-        type='text'
-        id={styles.nicknameSignUpInput}
-        maxLength={10}
-        required
-        onChange={handleChangeNickname}
+        status={!nickname || nicknameState.nicknameMessage ? 'error' : ''}
+        type='email'
         placeholder='닉네임을 입력하세요'
+        onChange={handleChangeNickname}
       />
+
       <div className={styles.helperTextContainer}>
         <div className={styles.helperText}>{nicknameState.nicknameMessage}</div>
       </div>

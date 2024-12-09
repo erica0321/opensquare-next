@@ -8,6 +8,7 @@ import { enableScroll } from '@/utils/scroll'
 import logo from '@images/logo.png'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { Input } from 'antd'
 
 export default function LogInPage() {
   const [email, setEmail] = useState('')
@@ -93,12 +94,15 @@ export default function LogInPage() {
           <label htmlFor='email' className={styles.logInTitle}>
             이메일
           </label>
-          <input
-            className={styles.input}
+          <Input
+            allowClear
+            size='large'
+            count={{
+              show: true,
+            }}
+            status={!email || email.length < 8 ? 'error' : ''}
             type='email'
-            minLength={8}
-            required
-            placeholder='이메일을 입력하세요'
+            placeholder='이메일을 입력하세요. (최소 8글자)'
             onChange={handleChangeEmail}
           />
         </div>
@@ -106,10 +110,10 @@ export default function LogInPage() {
           <label htmlFor='password' className={styles.logInTitle}>
             비밀번호
           </label>
-          <input
-            className={styles.input}
-            type='password'
-            required
+          <Input.Password
+            allowClear
+            status={!password ? 'error' : ''}
+            size='large'
             onChange={handleChangePassword}
             placeholder='비밀번호를 입력하세요'
           />

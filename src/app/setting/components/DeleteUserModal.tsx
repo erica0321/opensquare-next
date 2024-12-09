@@ -1,9 +1,9 @@
 import { useRouter } from 'next/navigation'
 import { enableScroll } from '@/utils/scroll'
-import Modal from '@/app/components/modals/Modal'
 import { navUrl, fetchUrl } from '@/static'
 import { apiRequest } from '@/utils/fetchData'
 import { toast } from 'react-toastify'
+import { Modal, Button } from 'antd'
 
 interface DeleteUserModalProps {
   isDelete: boolean
@@ -47,11 +47,25 @@ export default function DeleteUserModal({
 
   return (
     <Modal
-      isShow={isDelete}
       title={title}
-      description={description}
-      handleCancel={handleClickDeleteUserCancel}
-      handleConfirm={handleClickDeleteUserConfirm}
-    />
+      open={isDelete}
+      onOk={handleClickDeleteUserConfirm}
+      onCancel={handleClickDeleteUserCancel}
+      centered
+      footer={[
+        <Button key='back' onClick={handleClickDeleteUserCancel}>
+          취소
+        </Button>,
+        <Button
+          key='submit'
+          type='primary'
+          onClick={handleClickDeleteUserConfirm}
+        >
+          확인
+        </Button>,
+      ]}
+    >
+      {description}
+    </Modal>
   )
 }

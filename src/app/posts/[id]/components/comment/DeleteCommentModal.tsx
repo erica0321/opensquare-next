@@ -1,8 +1,8 @@
 import { fetchUrl } from '@/static'
 import { enableScroll } from '@/utils/scroll'
-import Modal from '@/app/components/modals/Modal'
 import { apiRequest } from '@/utils/fetchData'
 import { toast } from 'react-toastify'
+import { Modal, Button } from 'antd'
 
 interface DeleteCommentModalProps {
   postId: number
@@ -49,11 +49,21 @@ export default function DeleteCommentModal({
 
   return (
     <Modal
-      isShow={isCommentDelete}
       title={title}
-      description={description}
-      handleCancel={handleClickDeleteCancel}
-      handleConfirm={handleClickDeleteConfirm}
-    />
+      open={isCommentDelete}
+      onOk={handleClickDeleteConfirm}
+      onCancel={handleClickDeleteCancel}
+      centered
+      footer={[
+        <Button key='back' onClick={handleClickDeleteCancel}>
+          취소
+        </Button>,
+        <Button key='submit' type='primary' onClick={handleClickDeleteConfirm}>
+          확인
+        </Button>,
+      ]}
+    >
+      {description}
+    </Modal>
   )
 }

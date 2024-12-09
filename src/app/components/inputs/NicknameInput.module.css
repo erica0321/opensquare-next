@@ -18,13 +18,8 @@
   font-size: 1.5rem;
 }
 
-#nicknameSignUpInput {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  height: 3.5rem;
-  font-size: 1.3rem;
-  font-weight: 400;
-  border-radius: 1rem;
-  border: 0.05rem solid #181717;
+.nicknameContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

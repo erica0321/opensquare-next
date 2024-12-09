@@ -1,6 +1,6 @@
-import React from 'react'
 import styles from './PasswordInput.module.css'
 import { PASSWORD_CHECK_STATUS, PASSWORD_STATUS } from '@/utils/status'
+import { Input } from 'antd'
 
 type PasswordStatus = (typeof PASSWORD_STATUS)[keyof typeof PASSWORD_STATUS]
 type PasswordCheckStatus =
@@ -99,14 +99,16 @@ export default function PasswordInput({
         <label htmlFor='passwordInput' className={styles.inputTitle}>
           비밀번호*
         </label>
-        <input
-          required
-          type='password'
+        <Input.Password
+          allowClear
+          status={!password || passwordState.passwordMessage ? 'error' : ''}
+          size='large'
+          className={styles.input}
           value={password}
-          id={styles.passwordInput}
           onChange={handleChangePassword}
           placeholder='비밀번호를 입력하세요'
         />
+
         <div className={styles.helperTextContainer}>
           <div className={styles.helperText}>
             {passwordState.passwordMessage}
@@ -117,14 +119,20 @@ export default function PasswordInput({
         <label htmlFor='passwordCheckInput' className={styles.inputTitle}>
           비밀번호 확인*
         </label>
-        <input
-          required
+        <Input.Password
+          allowClear
+          className={styles.input}
+          status={
+            !passwordCheck || passwordCheckState.passwordCheckMessage
+              ? 'error'
+              : ''
+          }
+          size='large'
           value={passwordCheck}
-          type='password'
-          id={styles.passwordCheckInput}
           onChange={handleChangePasswordCheck}
           placeholder='비밀번호를 한번 더 입력하세요'
         />
+
         <div className={styles.helperTextContainer}>
           <div className={styles.helperText}>
             {passwordCheckState.passwordCheckMessage}

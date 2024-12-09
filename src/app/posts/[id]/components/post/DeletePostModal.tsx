@@ -1,9 +1,9 @@
 import { enableScroll } from '@/utils/scroll'
-import Modal from '@/app/components/modals/Modal'
 import { navUrl, fetchUrl } from '@/static'
 import { apiRequest } from '@/utils/fetchData'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { Modal, Button } from 'antd'
 
 interface DeletePostModalProps {
   postId: number
@@ -48,11 +48,21 @@ export default function DeletePostModal({
 
   return (
     <Modal
-      isShow={isPostDelete}
       title={title}
-      description={description}
-      handleCancel={handleClickDeleteCancel}
-      handleConfirm={handleClickDeleteConfirm}
-    />
+      open={isPostDelete}
+      onOk={handleClickDeleteConfirm}
+      onCancel={handleClickDeleteCancel}
+      centered
+      footer={[
+        <Button key='back' onClick={handleClickDeleteCancel}>
+          취소
+        </Button>,
+        <Button key='submit' type='primary' onClick={handleClickDeleteConfirm}>
+          확인
+        </Button>,
+      ]}
+    >
+      {description}
+    </Modal>
   )
 }

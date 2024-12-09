@@ -1,8 +1,8 @@
-import React from 'react'
 import styles from './EmailInput.module.css'
 import { fetchUrl } from '@/static'
 import { apiRequestNoAuth } from '@/utils/fetchData'
 import { EMAIL_STATUS } from '@/utils/status'
+import { Input } from 'antd'
 
 type EmailStatus = (typeof EMAIL_STATUS)[keyof typeof EMAIL_STATUS]
 
@@ -70,14 +70,19 @@ export default function EmailInput({
       <label htmlFor='emailInput' className={styles.inputTitle}>
         이메일*
       </label>
-      <input
-        required
+      <Input
+        allowClear
+        size='large'
+        count={{
+          show: true,
+        }}
         value={email}
+        status={!email || emailState.emailMessage ? 'error' : ''}
         type='email'
-        id={styles.emailInput}
+        placeholder='이메일을 입력하세요. (최소 8글자)'
         onChange={handleChangeEmail}
-        placeholder='이메일을 입력하세요'
       />
+
       <div className={styles.helperTextContainer}>
         <div className={styles.helperText}>{emailState.emailMessage}</div>
       </div>
