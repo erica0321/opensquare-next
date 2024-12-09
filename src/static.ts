@@ -9,6 +9,14 @@ export const headersNoToken = {
 }
 
 export const getHeadersWithToken = () => {
+  if (typeof window === 'undefined') {
+    return {
+      'ngrok-skip-browser-warning': '69420',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }
+  }
+
   return {
     'ngrok-skip-browser-warning': '69420',
     'Content-Type': 'application/json',
@@ -24,8 +32,8 @@ export const navUrl = {
   postDetail: '/posts/:id',
   addPost: '/posts/new',
   updatePost: '/posts/:id/update',
-  updateProfile: '/user/update',
-  updatePassword: '/user/password',
+  updateProfile: '/setting',
+  updatePassword: '/setting/password',
   codingPosts: '/posts?type=coding',
   otherPosts: '/posts?type=other',
   myPosts: '/posts?type=my',
