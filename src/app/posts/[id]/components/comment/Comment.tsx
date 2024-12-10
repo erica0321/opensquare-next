@@ -45,8 +45,8 @@ export default function Comment({
       } else if (action === 'delete') {
         setIsCommentDelete(true)
       }
-    } catch (error) {
-      toast.error('오류가 발생했습니다.')
+    } catch {
+      toast.error('댓글 수정/삭제 도중 오류 발생')
     }
   }
 

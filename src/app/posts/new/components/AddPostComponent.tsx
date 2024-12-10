@@ -64,7 +64,7 @@ export default function AddPostComponent() {
           setLoading(false)
           return
       }
-    } catch (error) {
+    } catch {
       toast.error('게시글 작성 중 에러가 발생했습니다.')
       setLoading(false)
     }

@@ -62,7 +62,7 @@ export default function LogInPage({ isOpen, setLogIn }: LoginProps) {
         toast.error('로그인 실패')
         setLoading(false)
       }
-    } catch (error) {
+    } catch {
       toast.error(
         '로그인 요청 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.'
       )

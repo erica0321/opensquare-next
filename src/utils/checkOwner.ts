@@ -8,26 +8,22 @@ export const checkCommentOwner = async ({
   postId: number
   commentId: number
 }) => {
-  try {
-    const checkData = await apiRequest({
-      url: `${fetchUrl.posts}/${postId}/comments/checkOwner`,
-      method: 'POST',
-      body: {
-        comment_id: commentId,
-      },
-    })
+  const checkData = await apiRequest({
+    url: `${fetchUrl.posts}/${postId}/comments/checkOwner`,
+    method: 'POST',
+    body: {
+      comment_id: commentId,
+    },
+  })
 
-    return checkData
-  } catch (error) {}
+  return checkData
 }
 
 export const checkPostOwner = async (postId: number) => {
-  try {
-    const checkData = await apiRequest({
-      url: fetchUrl.checkPostOwner,
-      method: 'POST',
-      body: { post_id: postId },
-    })
-    return checkData
-  } catch (error) {}
+  const checkData = await apiRequest({
+    url: fetchUrl.checkPostOwner,
+    method: 'POST',
+    body: { post_id: postId },
+  })
+  return checkData
 }

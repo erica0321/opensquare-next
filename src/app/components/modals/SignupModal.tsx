@@ -125,7 +125,7 @@ export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
           setSignUp(false)
           break
       }
-    } catch (error) {
+    } catch {
       toast.error('회원가입 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.')
     } finally {
       setLoading(false)

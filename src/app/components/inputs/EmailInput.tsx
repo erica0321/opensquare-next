@@ -51,7 +51,7 @@ export default function EmailInput({
     }
     emailDispatcher({ type: EMAIL_STATUS.Reset })
 
-    const isEmailDuplicate = await apiRequestNoAuth<{ status: number }>({
+    const isEmailDuplicate = await apiRequestNoAuth({
       url: `${fetchUrl.email}/${email}`,
       method: 'POST',
     }).then((data) => data.status === 400)

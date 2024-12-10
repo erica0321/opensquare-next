@@ -52,7 +52,7 @@ export default function NicknameInput({
     }
     nicknameDispatcher({ type: NICKNAME_STATUS.Reset })
 
-    const isNicknameDuplicate = await apiRequestNoAuth<{ status: number }>({
+    const isNicknameDuplicate = await apiRequestNoAuth({
       url: `${fetchUrl.signUpNickname}/${nickname}`,
       method: 'POST',
     }).then((data) => data.status === 400)

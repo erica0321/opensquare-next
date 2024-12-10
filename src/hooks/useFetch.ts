@@ -6,11 +6,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
 interface APIOption {
-  headers: {
-    'Content-Type': string
-    Accept: string
-    access?: string
-  }
+  headers: Record<string, string>
   credentials: RequestCredentials
   method?: string
 }

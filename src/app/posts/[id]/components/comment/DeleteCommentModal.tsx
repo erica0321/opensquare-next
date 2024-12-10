@@ -34,7 +34,7 @@ export default function DeleteCommentModal({
       }
 
       setIsCommentDelete(false)
-    } catch (error) {
+    } catch {
       toast.error('댓글 삭제 중 에러가 발생했습니다.')
     }
   }

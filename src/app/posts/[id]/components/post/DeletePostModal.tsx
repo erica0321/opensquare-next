@@ -1,4 +1,4 @@
-import { navUrl, fetchUrl } from '@/static'
+import { fetchUrl } from '@/static'
 import { apiRequest } from '@/utils/fetchData'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
@@ -33,7 +33,7 @@ export default function DeletePostModal({
         toast.error('게시물 삭제 실패')
       }
       setIsPostDelete(false)
-    } catch (error) {
+    } catch {
       toast.error('게시물 삭제 중 에러가 발생했습니다.')
     }
   }

@@ -15,7 +15,7 @@ interface WithLoginProps {
 export default function withLogin<P extends object>(
   Component: React.ComponentType<P>
 ) {
-  return function (props: P & WithLoginProps) {
+  return function HOC(props: P & WithLoginProps) {
     const router = useRouter()
 
     if (props.error) {

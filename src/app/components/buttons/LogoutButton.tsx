@@ -13,11 +13,7 @@ export default function LogoutButton() {
     try {
       setLogoutStatus('loading')
       const response = await fetch(fetchUrl.logOut, {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          access: `${localStorage.getItem('access')}`,
-        },
+        headers: getHeadersWithToken(),
         credentials: 'include',
         method: 'POST',
       })

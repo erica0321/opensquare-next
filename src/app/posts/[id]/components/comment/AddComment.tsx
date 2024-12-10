@@ -78,7 +78,7 @@ export default function AddComment({
       } else {
         toast.error('댓글 작성 실패.')
       }
-    } catch (error) {
+    } catch {
       toast.error('댓글 작성/수정 중 에러가 발생했습니다.')
     } finally {
       setLoading(false)

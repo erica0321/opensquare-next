@@ -17,18 +17,16 @@ export const getHeadersWithToken = (): Record<string, string> => {
 
   const access = localStorage.getItem('access')
 
-  if (access) {
-    return {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      access: access,
-    }
-  } else {
-    return {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }
-  }
+  return access
+    ? {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        access: access,
+      }
+    : {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }
 }
 
 export const navUrl = {

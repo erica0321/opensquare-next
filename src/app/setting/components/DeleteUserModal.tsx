@@ -32,7 +32,7 @@ export default function DeleteUserModal({
         toast.error('계정삭제 실패')
       }
       setIsDelete(false)
-    } catch (error) {
+    } catch {
       toast.error('계정 삭제 중 에러가 발생했습니다.')
     }
   }

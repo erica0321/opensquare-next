@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import styles from './page.module.css'
 import withLogin from '@/hocs/withLogin'
 import { fetchUrl, getHeadersWithToken } from '@/static'
@@ -19,11 +20,12 @@ interface User {
 
 const AuthLayout = withLogin(Layout)
 
-export default function Page() {
+function PageContent() {
   const { responseData, logIn } = useFetch<User>(`${fetchUrl.user}`, {
     headers: getHeadersWithToken(),
     credentials: 'include',
   })
+
   const searchParams = useSearchParams()
   const type = searchParams.get('type')
   const q = searchParams.get('q')
@@ -46,5 +48,13 @@ export default function Page() {
         </AuthLayout>
       </div>
     </section>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <PageContent />
+    </Suspense>
   )
 }

@@ -48,15 +48,14 @@ export default function UpdatePasswordContainer() {
 
       switch (updateResponse.status) {
         case 200:
-          toast.success('비밀번호가 수정되었습니다.')
-          toast.success('재로그인하십시오.')
+          toast.success('비밀번호가 변경되어 로그아웃됐습니다.')
           router.push(navUrl.home)
           return
         default:
           toast.error('비밀번호 수정실패')
           return
       }
-    } catch (error) {
+    } catch {
       toast.error(
         '비밀번호 수정 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.'
       )

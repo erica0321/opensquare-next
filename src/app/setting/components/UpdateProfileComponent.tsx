@@ -126,7 +126,7 @@ export default function UpdateProfileCompoent({
       } else {
         toast.error('프로필 수정 실패')
       }
-    } catch (error) {
+    } catch {
       toast.error('유저 프로필 업데이트 도중 에러가 발생했습니다')
     }
   }
