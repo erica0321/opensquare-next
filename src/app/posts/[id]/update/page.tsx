@@ -4,6 +4,7 @@ import styles from './page.module.css'
 import useFetch from '@/hooks/useFetch'
 import { getHeadersWithToken, fetchUrl } from '@/static'
 import UpdatePostComponent from './components/UpdatePostComponent'
+import withLogin from '@/hocs/withLogin'
 
 interface PageProps {
   params: {
@@ -18,12 +19,15 @@ interface ResponseData {
     post_image?: string
     type: string
   }
+  logIn: boolean
 }
+
+const AuthUpdatePostComponent = withLogin(UpdatePostComponent)
 
 export default function Page({ params }: PageProps) {
   const postId = params.id
 
-  const { responseData } = useFetch<ResponseData | null>(
+  const { responseData, logIn } = useFetch<ResponseData | null>(
     `${fetchUrl.posts}/${postId}/update`,
     {
       headers: getHeadersWithToken(),
@@ -36,8 +40,9 @@ export default function Page({ params }: PageProps) {
       <div className={styles.main}>
         <div className={styles.updatePost}>
           <p className={styles.pageTitle}>게시글 수정</p>
-          <UpdatePostComponent
-            responseData={responseData?.data}
+          <AuthUpdatePostComponent
+            logIn={logIn}
+            responseData={responseData}
             postId={postId}
           />
         </div>

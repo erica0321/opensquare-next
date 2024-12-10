@@ -28,13 +28,12 @@ export default function DeletePostModal({
 
       if (responseData.status === 200) {
         toast.success('게시물이 삭제되었습니다.')
-        router.push(navUrl.posts)
+        router.back()
       } else {
         toast.error('게시물 삭제 실패')
       }
       setIsPostDelete(false)
     } catch (error) {
-      console.error('게시물 삭제 중 에러 발생:', error)
       toast.error('게시물 삭제 중 에러가 발생했습니다.')
     }
   }
@@ -50,11 +49,7 @@ export default function DeletePostModal({
         <Button key='back' onClick={() => setIsPostDelete(false)}>
           취소
         </Button>,
-        <Button
-          key='submit'
-          type='primary'
-          onClick={() => setIsPostDelete(false)}
-        >
+        <Button key='submit' type='primary' onClick={handleClickDeleteConfirm}>
           확인
         </Button>,
       ]}

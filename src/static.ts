@@ -3,25 +3,31 @@
 export const backHost = 'http://localhost:8080'
 
 export const headersNoToken = {
-  'ngrok-skip-browser-warning': '69420',
   'Content-Type': 'application/json',
   Accept: 'application/json',
 }
 
-export const getHeadersWithToken = () => {
+export const getHeadersWithToken = (): Record<string, string> => {
   if (typeof window === 'undefined') {
     return {
-      'ngrok-skip-browser-warning': '69420',
       'Content-Type': 'application/json',
       Accept: 'application/json',
     }
   }
 
-  return {
-    'ngrok-skip-browser-warning': '69420',
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    access: `${localStorage.getItem('access')}`,
+  const access = localStorage.getItem('access')
+
+  if (access) {
+    return {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      access: access,
+    }
+  } else {
+    return {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }
   }
 }
 

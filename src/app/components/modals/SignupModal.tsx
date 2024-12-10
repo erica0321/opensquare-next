@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useReducer, ChangeEvent } from 'react'
 import styles from './SignupModal.module.css'
 import { SignUpError } from '@/utils/errorMessage'
@@ -72,15 +74,6 @@ export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
     nicknameState
   )
 
-  const reader = new FileReader()
-  reader.onload = (event: ProgressEvent<FileReader>) => {
-    const result = event.target?.result
-    if (typeof result === 'string') {
-      setImageNull(false)
-      setProfileImage(result)
-    }
-  }
-
   const handleChangeProfileImage = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
     if (!files || files.length === 0) {
@@ -88,7 +81,18 @@ export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
       setImageNull(true)
       return
     }
-    reader.readAsDataURL(files[0])
+
+    if (typeof window !== 'undefined') {
+      const reader = new FileReader()
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        const result = event.target?.result
+        if (typeof result === 'string') {
+          setImageNull(false)
+          setProfileImage(result)
+        }
+      }
+      reader.readAsDataURL(files[0])
+    }
   }
 
   const handleClickSignUp = async () => {
@@ -122,7 +126,6 @@ export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
           break
       }
     } catch (error) {
-      console.error('회원가입 중 에러 발생:', error)
       toast.error('회원가입 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.')
     } finally {
       setLoading(false)
@@ -160,6 +163,8 @@ export default function SignUp({ isOpen, setLogIn, setSignUp }: SignUpProps) {
             <div className={styles.imageContainer}>
               {profileImage ? (
                 <Image
+                  width={150}
+                  height={150}
                   className={styles.imageShow}
                   alt='profile'
                   src={profileImage}

@@ -84,6 +84,10 @@ export default function AllPosts({ type, search }: AllPostsProps) {
     [loading, hasMore]
   )
 
+  if (data.length === 0) {
+    return <div className={styles.nothing}>게시글이 없습니다.</div>
+  }
+
   return (
     <div>
       <div ref={lastPostElementRef} className={styles.postsWrapper}>

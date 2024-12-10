@@ -57,7 +57,6 @@ export default function UpdatePasswordContainer() {
           return
       }
     } catch (error) {
-      console.error('비밀번호 수정 중 에러 발생:', error)
       toast.error(
         '비밀번호 수정 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.'
       )

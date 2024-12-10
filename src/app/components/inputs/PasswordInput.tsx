@@ -68,7 +68,8 @@ export default function PasswordInput({
     passwordDispatcher({ type: PASSWORD_STATUS.Reset })
 
     const passwordRegExp =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]{8,20}$/
+
     if (!passwordRegExp.test(password)) {
       passwordDispatcher({ type: PASSWORD_STATUS.NotMatch })
       return false

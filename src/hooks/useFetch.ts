@@ -7,7 +7,6 @@ import { toast } from 'react-toastify'
 
 interface APIOption {
   headers: {
-    'ngrok-skip-browser-warning': string
     'Content-Type': string
     Accept: string
     access?: string
@@ -17,7 +16,7 @@ interface APIOption {
 }
 
 export default function useFetch<T>(url: string, options: APIOption) {
-  const [logIn, setLogIn] = useState(false)
+  const [logIn, setLogIn] = useState<boolean>()
   const [responseData, setResponseData] = useState<T | null>(null)
   const [error, setError] = useState<unknown>()
   const [loading, setLoading] = useState(false)
@@ -39,8 +38,7 @@ export default function useFetch<T>(url: string, options: APIOption) {
       if (accessToken) localStorage.setItem('access', accessToken)
       return accessToken
     } catch (error) {
-      toast.error('토큰 재발급 실패. 로그인 해주세요.')
-      console.error('Failed to refresh token', error)
+      toast.error('로그인 시간이 만료됐습니다. 재로그인 해주세요.')
       throw error
     }
   }

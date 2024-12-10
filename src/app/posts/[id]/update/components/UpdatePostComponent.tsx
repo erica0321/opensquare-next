@@ -10,14 +10,16 @@ import { toast } from 'react-toastify'
 import Image from 'next/image'
 
 interface ResponseData {
-  title: string
-  content: string
-  post_image?: string
-  type: string
+  data: {
+    title: string
+    content: string
+    post_image?: string
+    type: string
+  }
 }
 
 interface UpdateContainerProps {
-  responseData: ResponseData | undefined
+  responseData: ResponseData | null
   postId: number
 }
 
@@ -32,12 +34,14 @@ export default function UpdatePostComponent({
   const [type, setType] = useState<string>('')
   const router = useRouter()
 
+  const data = responseData?.data
+
   useEffect(() => {
-    if (responseData) {
-      setTitle(responseData.title)
-      setContent(responseData.content)
-      setPostImage(responseData.post_image ?? null)
-      setType(responseData.type)
+    if (data) {
+      setTitle(data.title)
+      setContent(data.content)
+      setPostImage(data.post_image ?? null)
+      setType(data.type)
     }
   }, [responseData])
 
@@ -86,7 +90,6 @@ export default function UpdatePostComponent({
           break
       }
     } catch (error) {
-      console.error('게시글 수정 중 에러가 발생했습니다:', error)
       toast.error(
         '게시글 수정 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.'
       )

@@ -28,9 +28,7 @@ export default function Layout({ children, responseData }: LayoutProps) {
       <div className={styles.top}>
         <Link
           href={navUrl.posts}
-          className={
-            type === undefined ? `${styles.tabClicked}` : `${styles.tab}`
-          }
+          className={type === null ? `${styles.tabClicked}` : `${styles.tab}`}
         >
           전체
         </Link>

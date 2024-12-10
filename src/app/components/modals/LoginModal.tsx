@@ -63,7 +63,6 @@ export default function LogInPage({ isOpen, setLogIn }: LoginProps) {
         setLoading(false)
       }
     } catch (error) {
-      console.error('로그인 요청 중 에러가 발생했습니다:', error)
       toast.error(
         '로그인 요청 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.'
       )
@@ -106,7 +105,9 @@ export default function LogInPage({ isOpen, setLogIn }: LoginProps) {
               count={{
                 show: true,
               }}
-              status={!email || email.length < 8 ? 'error' : ''}
+              status={
+                !email || emailNotValid || email.length < 8 ? 'error' : ''
+              }
               type='email'
               placeholder='이메일을 입력하세요. (최소 8글자)'
               onChange={handleChangeEmail}

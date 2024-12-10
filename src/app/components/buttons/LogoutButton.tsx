@@ -13,7 +13,11 @@ export default function LogoutButton() {
     try {
       setLogoutStatus('loading')
       const response = await fetch(fetchUrl.logOut, {
-        headers: getHeadersWithToken(),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          access: `${localStorage.getItem('access')}`,
+        },
         credentials: 'include',
         method: 'POST',
       })
@@ -27,8 +31,8 @@ export default function LogoutButton() {
       setLogoutStatus('success')
       toast.success('로그아웃 됐습니다.')
       router.push(navUrl.home)
-    } catch (error) {
-      console.error('Error logging out:', error)
+    } catch {
+      toast.error('로그아웃 실패. 다시 시도해주세요.')
     }
   }
 

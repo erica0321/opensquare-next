@@ -1,7 +1,8 @@
 import { headersNoToken, getHeadersWithToken } from '../static'
 import { fetchUrl } from '@/static'
+import { toast } from 'react-toastify'
 
-const refreshToken = async (): Promise<string | null> => {
+const refreshToken = async () => {
   try {
     const response = await fetch(`${fetchUrl.reissue}`, {
       method: 'POST',
@@ -11,14 +12,16 @@ const refreshToken = async (): Promise<string | null> => {
       },
     })
     if (!response.ok) {
-      throw new Error('Failed to refresh token')
+      return null
     }
     const accessToken = response.headers.get('access')
-    if (accessToken) localStorage.setItem('access', accessToken)
-    return accessToken
+    if (accessToken) {
+      localStorage.setItem('access', accessToken)
+      return accessToken
+    }
   } catch (error) {
-    console.error('Failed to refresh token', error)
-    throw error
+    console.error('Error refreshing token:', error)
+    return null
   }
 }
 
@@ -28,14 +31,14 @@ interface ApiRequestParams {
   body?: unknown
 }
 
-export const apiRequest = async <T = any>({
+export const apiRequest = async ({
   url,
   method,
   body: requestBody,
-}: ApiRequestParams): Promise<T> => {
-  const makeRequest = async (retry = true): Promise<T> => {
+}: ApiRequestParams) => {
+  const makeRequest = async (retry = true) => {
     try {
-      const headers = getHeadersWithToken() as Record<string, string>
+      const headers = new Headers(getHeadersWithToken())
       const options: RequestInit = {
         method,
         headers,
@@ -44,7 +47,7 @@ export const apiRequest = async <T = any>({
       }
 
       const response = await fetch(url, options)
-      const responseData = (await response.json()) as T
+      const responseData = await response.json()
 
       const accessToken = response.headers.get('access')
       if (accessToken) {
@@ -52,37 +55,32 @@ export const apiRequest = async <T = any>({
       }
 
       if (response.status === 401 && retry) {
-        try {
-          const newToken = await refreshToken()
-          if (!newToken) {
-            throw new Error('No new token received')
-          }
-          headers['Authorization'] = `Bearer ${newToken}`
+        const newToken = await refreshToken()
+        if (newToken) {
+          headers.set('Authorization', `Bearer ${newToken}`)
           return await makeRequest(false)
-        } catch (refreshError) {
-          throw new Error('Failed to refresh token and retry request')
         }
+        toast.error('로그인 시간 만료. 재로그인하십시오')
       }
 
       return responseData
     } catch (error) {
-      console.error(`Error with request to ${url}:`, error)
-      throw error
+      console.log(error)
+      return null
     }
   }
-
   return await makeRequest()
 }
 
-export const apiRequestNoAuth = async <T = any>({
+export const apiRequestNoAuth = async ({
   url,
   method,
   body: requestBody,
-}: ApiRequestParams): Promise<T> => {
+}: ApiRequestParams) => {
   try {
     const options: RequestInit = {
       method,
-      headers: headersNoToken as Record<string, string>,
+      headers: headersNoToken,
       body: requestBody ? JSON.stringify(requestBody) : undefined,
       credentials: 'include',
     }
@@ -92,7 +90,7 @@ export const apiRequestNoAuth = async <T = any>({
     if (accessToken) {
       localStorage.setItem('access', accessToken)
     }
-    const responseData = (await response.json()) as T
+    const responseData = await response.json()
 
     const newToken = response.headers.get('Authorization')
     if (newToken) {
@@ -104,7 +102,7 @@ export const apiRequestNoAuth = async <T = any>({
 
     return responseData
   } catch (error) {
-    console.error(`Error with request to ${url}:`, error)
-    throw error
+    console.error(error)
+    return null
   }
 }

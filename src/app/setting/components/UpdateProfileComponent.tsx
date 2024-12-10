@@ -15,13 +15,15 @@ import { toast } from 'react-toastify'
 import { navUrl, fetchUrl, backHost } from '@/static'
 
 interface ResponseData {
-  profileImage: string
-  nickname: string
-  email: string
+  data: {
+    profileImage: string
+    nickname: string
+    email: string
+  }
 }
 
 interface UpdateProfileProps {
-  responseData?: ResponseData
+  responseData: ResponseData | null
 }
 
 export default function UpdateProfileCompoent({
@@ -37,10 +39,12 @@ export default function UpdateProfileCompoent({
   const [isAble, setIsAble] = useState<boolean>(false)
   const router = useRouter()
 
+  const data = responseData?.data
+
   useEffect(() => {
-    if (responseData) {
-      setProfile(responseData.profileImage)
-      setNickname(responseData.nickname)
+    if (data) {
+      setProfile(data.profileImage)
+      setNickname(data.nickname)
     }
   }, [responseData])
 
@@ -123,7 +127,7 @@ export default function UpdateProfileCompoent({
         toast.error('프로필 수정 실패')
       }
     } catch (error) {
-      console.error('유저 프로필 업데이트 도중 에러가 발생했습니다:', error)
+      toast.error('유저 프로필 업데이트 도중 에러가 발생했습니다')
     }
   }
 
@@ -162,7 +166,7 @@ export default function UpdateProfileCompoent({
           <label htmlFor='emailInput' className={styles.inputTitle}>
             이메일
           </label>
-          <div id={styles.updateEmailInput}>{responseData?.email}</div>
+          <div id={styles.updateEmailInput}>{data?.email}</div>
         </div>
         <div className={styles.profileNickname}>
           <label htmlFor='nicknameInput' className={styles.inputTitle}>

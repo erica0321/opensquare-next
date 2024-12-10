@@ -17,7 +17,7 @@ interface User {
   logIn: boolean
 }
 
-// const AuthLayout = withLogin(Layout)
+const AuthLayout = withLogin(Layout)
 
 export default function Page() {
   const { responseData, logIn } = useFetch<User>(`${fetchUrl.user}`, {
@@ -39,11 +39,11 @@ export default function Page() {
   return (
     <section className={styles.container}>
       <div className={styles.main}>
-        <Layout responseData={responseData}>
+        <AuthLayout logIn={logIn} responseData={responseData}>
           <section className={styles.postsMain}>
             <AllPosts type={postType} search={search} />
           </section>
-        </Layout>
+        </AuthLayout>
       </div>
     </section>
   )

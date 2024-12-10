@@ -7,7 +7,9 @@ interface WithLoginProps {
   logIn?: boolean
   error?: string
   loading?: boolean
-  responseData: Response | null
+  responseData?: Response | null
+  setIsPostDelete?: React.Dispatch<React.SetStateAction<boolean>>
+  postId?: number
 }
 
 export default function withLogin<P extends object>(

@@ -3,10 +3,12 @@ export interface Response {
     | {
         profileImage: string
         nickname: string
+        email?: string
       }
     | {
         type: string
-        profileImage: string
+        profileImage?: string
+        profile_image?: string
         nickname: string
         created_at: string
         title: string
@@ -15,5 +17,11 @@ export interface Response {
         commentCount: number
         post_image?: string
         content: string
+      }
+    | {
+        title: string
+        content: string
+        post_image?: string
+        type: string
       }
 }

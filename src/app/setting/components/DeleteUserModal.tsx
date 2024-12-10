@@ -33,7 +33,6 @@ export default function DeleteUserModal({
       }
       setIsDelete(false)
     } catch (error) {
-      console.error('계정 삭제 중 에러 발생:', error)
       toast.error('계정 삭제 중 에러가 발생했습니다.')
     }
   }

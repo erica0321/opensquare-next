@@ -79,7 +79,6 @@ export default function AddComment({
         toast.error('댓글 작성 실패.')
       }
     } catch (error) {
-      console.error('댓글 작성/수정 중 에러 발생:', error)
       toast.error('댓글 작성/수정 중 에러가 발생했습니다.')
     } finally {
       setLoading(false)

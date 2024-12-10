@@ -7,14 +7,14 @@ const ToastProvider = () => {
   return (
     <ToastContainer
       position='top-right'
-      autoClose={2000}
+      autoClose={1000}
       hideProgressBar={false}
       newestOnTop
       pauseOnFocusLoss
       draggable
       pauseOnHover
       theme='dark'
-      limit={2}
+      limit={1}
       closeOnClick
       toastStyle={{
         fontSize: '15px',
