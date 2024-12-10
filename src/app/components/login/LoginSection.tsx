@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './LogInSection.module.css'
+import styles from './LoginSection.module.css'
 import { useState } from 'react'
 import LogInPage from '@/app/components/modals/LoginModal'
 import SignUpPage from '@/app/components/modals/SignupModal'

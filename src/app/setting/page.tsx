@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './Page.module.css'
+import styles from './page.module.css'
 import { getHeadersWithToken, fetchUrl } from '@/static'
 import UpdateProfileCompoent from './components/UpdateProfileComponent'
 import useFetch from '@/hooks/useFetch'

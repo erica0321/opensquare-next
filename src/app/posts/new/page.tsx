@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './Page.module.css'
+import styles from './page.module.css'
 import AddPostComponent from './components/AddPostComponent'
 import { getHeadersWithToken, fetchUrl } from '@/static'
 import useFetch from '@/hooks/useFetch'
